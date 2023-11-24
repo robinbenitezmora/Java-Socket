@@ -30,22 +30,22 @@ public class SocketCustomer extends JFrame implements ActionListener, Runnable {
   setFont(new Font("Arial Black", Font.PLAIN, 12));
   setForeground(new Color(0, 0, 60));
   setBackground(new Color(60, 0, 0));
-  textArea.setToolTipText("Tell us your History")
-  textArea.setForeground(new C
+  textArea.setToolTipText("Tell us your History");
+  textArea.setForeground(new Color(60, 0, 0));
+  textArea.setFont(new Font("Arial Black", Font.PLAIN, 12));
   textArea.setEditable(false);
-  textArea.setFont(new Font("Monospaced", Fon
-
   
   getContentPane().add(jp, "Center");
   inputText.setText("Enter your message: ");
-  inputText.setToolTipText("Enter your Message
+  inputText.setToolTipText("Enter your Message");
   inputText.setForeground(new Color(0, 0, 0));
-  inputText.setFont(new Font("Arial Black", Font.PLA
+  inputText.setFont(new Font("Tahoma", Font.BOLD, 12));
+  inputText.setBackground(new Color(250, 250, 250));
 
   
-  getContentPane().a
+  getContentPane().add(inputText, "South");
   setSize(350, 450)
-
+  setVisible(true);
   
   inputText.requestFocus();
   setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -75,7 +75,25 @@ public class SocketCustomer extends JFrame implements ActionListener, Runnable {
     }
   }
 
- public static void main(String[] args) {
-  new SocketCustomer().serverConnection();
-  
- }
+  public void actionPerformed(ActionEvent e) {
+    if (e.getSource() == inputText) {
+      pw.println(inputText.getText());
+      inputText.setText("");
+    }
+  }
+
+  public void run() {
+    try {
+      while (true) {
+        String message = br.readLine();
+        textArea.append(message + "\n");
+      }
+    } catch (Exception e) {
+      System.out.println(e + " Socket run error");
+    }
+  }
+
+  public static void main(String[] args) {
+    new SocketCustomer();
+  }
+}
