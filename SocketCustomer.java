@@ -16,14 +16,14 @@ import javax.swing.JTextField;
 
 @SuppressWarning("serial")
 public class SocketCustomer extends JFrame implements ActionListener, Runnable {
- JTextArea textArea = new JTextArea();
- JScrollPane jp = JScrollPane();
- JTextField inputText = new JTextField();
- JMenuBar menuBar = new JMenuBar();
+  JTextArea textArea = new JTextArea();
+  JScrollPane jp = JScrollPane();
+  JTextField inputText = new JTextField();
+  JMenuBar menuBar = new JMenuBar();
 
- Socket sk;
- BufferedReader br;
- PrintWriter pw;
+  Socket sk;
+  BufferedReader br;
+  PrintWriter pw;
 
  public SocketCustomer() {
   super("Socket客户端");
@@ -52,80 +52,30 @@ public class SocketCustomer extends JFrame implements ActionListener, Runnable {
 
  }
 
- private JScrollPane JScrollPane() {
-  return null;
- }
-
- public void serverConnection() {
-  try {
-   String IP = JOptionPane.showInputDialog(this, "Please enter a server IP", JOptionPane.INFORMATION_MESSAGE);
-   while (getName().length() > 7) {
-    setName(
-      JOptionPane.showInputDialog(this, "Please enter a name less than 7 characters", JOptionPane.INFORMATION_MESSAGE));
-   }
-
-   br = new BufferedReader(new InputStreamReader(sk.getInputStream()));
-   pw = new PrintWriter(sk.getOutputStream(), true);
-   pw.println(getName());
-
-   new Thread(this).start();
-  } catch (Exception e) {
-   System.out.println(e + " Socket Connection error");
+  private JScrollPane JScrollPane() {
+    return null;
   }
- }
+
+  public void serverConnection() {
+    try {
+      String IP = JOptionPane.showInputDialog(this, "Please enter a server IP", JOptionPane.INFORMATION_MESSAGE);
+      while (getName().length() > 7) {
+        setName(
+            JOptionPane.showInputDialog(this, "Please enter a name less than 7 characters",
+                JOptionPane.INFORMATION_MESSAGE));
+      }
+
+      br = new BufferedReader(new InputStreamReader(sk.getInputStream()));
+      pw = new PrintWriter(sk.getOutputStream(), true);
+      pw.println(getName());
+
+      new Thread(this).start();
+    } catch (Exception e) {
+      System.out.println(e + " Socket Connection error");
+    }
+  }
 
  public static void main(String[] args) {
   new SocketCustomer().serverConnection();
+  
  }
-
- 
- 
-  
-  
- 
-
- 
- 
-  
-  
- 
-
- 
- 
-  
-  
- 
-
- 
- 
-  
-  
- 
-
- 
- 
-  
-  
- 
-
- 
- 
-  
-  
- 
-
- 
- 
-  
-  
- 
-
- 
-
- 
-
- 
- 
-  
-  
- 
